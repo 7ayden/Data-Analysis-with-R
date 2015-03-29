@@ -9,3 +9,8 @@ print(p1)
 nrow(subset(diamonds, diamonds$price < 500))
 nrow(subset(diamonds, diamonds$price < 250))
 nrow(subset(diamonds, diamonds$price => 15000))
+
+#Cheaper Diamonds (range from 500 to 5000)
+  qplot(x =price , data = diamonds, binwidth = 500) + 
+    scale_x_continuous(limits = c(500, 5000)) 
+ggsave("diamonds.peak.png")
