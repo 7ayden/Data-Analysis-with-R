@@ -4,3 +4,8 @@ library(ggplot2)
 data(diamonds)
 p1 <-qplot(x =price, data =diamonds, binwidth = 10)
 print(p1)
+
+#Diamond Counts
+nrow(subset(diamonds, diamonds$price < 500))
+nrow(subset(diamonds, diamonds$price < 250))
+nrow(subset(diamonds, diamonds$price => 15000))
