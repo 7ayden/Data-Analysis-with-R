@@ -1,0 +1,6 @@
+
+# Price Histogram
+library(ggplot2)
+data(diamonds)
+p1 <-qplot(x =price, data =diamonds, binwidth = 10)
+print(p1)
