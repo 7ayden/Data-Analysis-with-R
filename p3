@@ -18,6 +18,10 @@ ggsave("diamonds.peak.png")
 # Price by Cut Histograms
 
 qplot(x =price , data = diamonds, binwidth = 1000) + 
-  scale_x_continuous(limits = c(500, 19000), breaks = seq(0,  19000, 1000)) +
-  facet_wrap(~cut,ncol = 1, scale = "free_y")
+  scale_x_continuous(limits = c(500, 19000), breaks = seq(0,  19000, 1000)) 
+
+#Scales and Multiple Histograms
+  
+qplot(x =price , data = diamonds, binwidth = 1000) + 
+  scale_x_continuous(limits = c(500, 19000), breaks = seq(0,  19000, 1000)) +  facet_wrap(~cut,ncol = 1, scale = "free_y")
   
