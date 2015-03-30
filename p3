@@ -46,6 +46,14 @@ by(diamonds$price,(diamonds$color == 'J'), summary)
 # Price per Carat Box Plots by Color
 qplot(x = color, y = price/carat, data = diamonds, geom = "boxplot", color = cut) 
 
+#Carat Frequency Polygon
+qplot(x = carat, data = diamonds, geom = "freqpoly", binwidth = 0.1)
+table(diamonds$carat)[table(diamonds$carat)>2000] 
+
+
+
+
+
 
 
 
