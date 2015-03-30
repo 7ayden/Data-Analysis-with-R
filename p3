@@ -38,3 +38,7 @@ qplot(x = color, y = price, data = diamonds, geom = "boxplot")
 ggsave('boxplotbycolor.png')
 qplot(x = cut, y = price, data = diamonds, geom = "boxplot")
 ggsave('boxplotbycut.png')
+
+#Interquartile Range - IQR
+by(diamonds$price,(diamonds$color == 'D'), summary)
+by(diamonds$price,(diamonds$color == 'J'), summary)
