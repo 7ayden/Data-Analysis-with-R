@@ -25,3 +25,8 @@ qplot(x =price , data = diamonds, binwidth = 1000) +
 qplot(x =price , data = diamonds, binwidth = 1000) + 
   scale_x_continuous(limits = c(500, 19000), breaks = seq(0,  19000, 1000)) +  facet_wrap(~cut,ncol = 1, scale = "free_y")
   
+# Price per Carat by Cut
+ggplot(aes(x = price), data = diamonds) + 
+  geom_histogram(binwidth = 0.1) + 
+  scale_x_log10() +
+  facet_wrap(~cut)
