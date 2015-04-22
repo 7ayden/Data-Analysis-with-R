@@ -1,0 +1,64 @@
+library(rmarkdown)
+library(ggplot2)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+
+getwd()
+setwd("/Users/jayden/Desktop/udacity")
+bday <- read.delim('pseudo_facebook.tsv', sep = '\t')
+
+names(pf)
+gplot(x= dob_day. data = pf) + 
+scale_x_discrete(breaks = 1:31) + 
+facet_wrap(~dob_month, ncol = 3) # split into 12 histrogram in 3 columns
+
+# Friend Count
+ggplot(aes(x = friend_count), data = pf, xlim = c(0,1000)) +    geom_histogram() # limiting the Axes using xlim
+
+# adjusting the bin width
+gplot(x= friend_count, data = pf, binwidth = 25) + 
+scale_x_continuous(limits = c(0,1000), breaks = seq(0,1000,50)) 
+
+#omitting NA Gender Observations
+gplot(x= friend_count, data =subset(pf,!is.na(gender)), binwidth = 10) 
+scale_x_continuous(limits = c(0,1000), breaks = seq(0,1000,50)) +
+facet_wrap(~gender)
+
+# Satistics by gender, turns out more female users
+table(pf$gender)
+by(pf$friend_count, pf$gender, summary)
+
+# Tenure histogram by Years
+gplot(x = tenure/365, date = pf,
+  xlab = 'Number of years using Facebook',
+  ylab = 'Number of users in sample')+
+  scale_x_countinuous(breaks = seq(1,7,1), lim = c(0,7))
+
+# User based on Age
+gplot(x = age, data = pf, binwidth =1, 
+scale_x_discrete(breaks = seq(0,114,5))
+summary(pf$age)
+
+# Transforming Data
+gplot(x = friend_count, data= pf)
+summary(pf$friend_count)
+summary(log10(pf$friend_count + 1))
+summary(sqrt(pf$friend_count))
+
+p1 <- gplot(aes(x= friend_count), data = pf) + geom_histogram()
+p2 <- p1 + scale_x_log10()
+p3 <- p1+ scale_x_sqrt()
+
+grid.arrange(p1,p2,p3, ncol = 1)
+
+## add a scaling layer 
+logScale <- gplot(x= log10(friend_count), data = pf)
+countScale <- gplot(aes(x = friend_count), data = pf) + 
+geom_histogram()+
+scale_x_log10()
+
+grid.arrange(logScale, countScale, ncol = 2)
+gplot(x= friend_count, data =pf) +
+scale_x_log10()
+
