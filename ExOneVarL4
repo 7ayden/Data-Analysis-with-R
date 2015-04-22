@@ -1,2 +1,6 @@
 library(gplot2)
-pf <- read.csv('')
+
+getwd()
+setwd("/Users/jayden/Desktop/udacity")
+pf <- read.delim('pseudo_facebook.tsv', sep = '\t')
+
