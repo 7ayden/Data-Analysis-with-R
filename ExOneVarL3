@@ -6,7 +6,7 @@ library(gridExtra)
 
 getwd()
 setwd("/Users/jayden/Desktop/udacity")
-bday <- read.delim('pseudo_facebook.tsv', sep = '\t')
+pf <- read.delim('pseudo_facebook.tsv', sep = '\t')
 
 names(pf)
 gplot(x= dob_day. data = pf) + 
