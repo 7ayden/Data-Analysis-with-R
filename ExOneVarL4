@@ -1,6 +1,52 @@
 library(gplot2)
+library(dplyr)
 
 getwd()
 setwd("/Users/jayden/Desktop/udacity")
 pf <- read.delim('pseudo_facebook.tsv', sep = '\t')
 
+gplot(x = age, y = friend_count, data = pf)
+
+# Overplotting on scatterplot
+ggplot(aes(x = age, y = friend_count), data = pf) + 
+geom_point(alpha = 1/20) +  xlim(13,90)
+
+
+summary(pf$age)
+
+# conditional Means
+
+age_groups <- group_by(pf,age)
+pf.fc_by+age <- summarise(age_groups, 
+  friend_count_mean = mean(friend_count),
+  friend_count_median = median(friend_count), 
+  n = n())
+  head(pf.fc_by_age)
+  
+  pf %>%
+    group_by(age) %>%
+    summarise(friend_count_mean = mean(friend_count),
+              friend_count_median = median(friend_count),
+              n = n()) %>%
+              
+    arrange(age)
+head(pf,fc_by_age,20)
+
+# OVerlaying Summaries with Raw Data
+ggplot(aes(x= age, y = friend_count), data = pf) +
+xlim(13,90)+
+geom_point(alpha = 0.05,
+          position = position_jitter(h = 0),
+          color = 'orange') +
+          coord_trans(y = 'sqrt') + 
+          geom_line(stat = 'summary', fun.y = mean) + 
+          geom_line(stat = 'summary', fun.y = quantile, probs = 0.1,
+                    linetype = 2, color = 'blue') +
+          geom_line(stat = 'summary', fun.y = quantile, probs = 0.5, 
+                    linetype = 2, color = 'blue') + 
+          geom_line(stat = 'summary', fun.y = quantile, probs = 0.9,
+                    linetype = 2, color = 'blue')
+                    
+                    
+    
+    
